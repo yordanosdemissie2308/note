@@ -104,7 +104,7 @@ const Home = () => {
             </span>
           </button>
 
-          {/* Submit button */}
+     
           <button
             onClick={handleSubmit}
             className={`${
