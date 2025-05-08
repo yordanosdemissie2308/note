@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { db } from "./firebaseConfig/page"; // Make sure the path is correct
+import { db } from "./firebaseConfig/page"; 
 import {
   collection,
   addDoc,
@@ -12,8 +12,7 @@ import {
   updateDoc,
   doc,
 } from "firebase/firestore";
-import EmojiPicker from "emoji-picker-react"; // Import the emoji picker
-
+import EmojiPicker from "emoji-picker-react"; 
 interface Note {
   id: string;
   text: string;
@@ -24,7 +23,7 @@ const Home = () => {
   const [note, setNote] = useState("");
   const [notes, setNotes] = useState<Note[]>([]);
   const [editId, setEditId] = useState<string | null>(null);
-  const [showPicker, setShowPicker] = useState(false); // State to handle the picker visibility
+  const [showPicker, setShowPicker] = useState(false);
 
   useEffect(() => {
     const q = query(collection(db, "notes"), orderBy("createdAt", "desc"));
@@ -73,11 +72,11 @@ const Home = () => {
   };
 
   const handleStickerClick = () => {
-    setShowPicker(!showPicker); // Toggle the visibility of the picker
+    setShowPicker(!showPicker); 
   };
 
   const handleEmojiClick = (event: any, emojiObject: any) => {
-    setNote(note + emojiObject.emoji); // Append the emoji to the current note text
+    setNote(note + emojiObject.emoji); 
   };
 
   return (
@@ -95,7 +94,7 @@ const Home = () => {
             className="flex-1 p-4 rounded-2xl border border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-md"
           />
 
-          {/* Sticker button */}
+        
           <button
             onClick={handleStickerClick}
             className="bg-gray-300 text-black hover:bg-gray-400 rounded-full p-3 flex items-center justify-center transition-all"
@@ -118,14 +117,14 @@ const Home = () => {
           </button>
         </div>
 
-        {/* Emoji picker */}
+      
         {showPicker && (
           <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-50">
             <EmojiPicker onEmojiClick={handleEmojiClick} />
           </div>
         )}
 
-        {/* List of Notes */}
+       
         <div className="grid gap-6">
           {notes.map((note) => (
             <div
